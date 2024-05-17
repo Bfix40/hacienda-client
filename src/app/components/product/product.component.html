@@ -1,0 +1,67 @@
+<div class="column gap-1 wrapper">
+  <!-- Product Thumbnail -->
+  <img [src]="product.image" alt="Product Thumbnail" />
+
+  <!-- Product Name -->
+  <h2 class="title">{{ product.handle | truncateName : 16 : "..." }}</h2>
+
+  <!-- Product Description -->
+  <p class="description">{{ product.description }}</p>
+
+  <!-- Product SKU -->
+  <p class="sku">SKU: {{ product.SKU }}</p>
+
+  <!-- Product Weight -->
+  <p class="grams">Weight: {{ product.grams }} grams</p>
+
+  <!-- Product Stock -->
+  <p class="stock">Stock: {{ product.stock }}</p>
+
+  <!-- Product Price -->
+  <div class="row gap-05">
+    <span class="price-label">Price:</span>
+    <span class="price">{{ product.price | price }}</span>
+  </div>
+
+  <!-- Product Compare Price -->
+  <div class="row gap-05">
+    <span class="compare-price-label">Compare Price:</span>
+    <span class="compare-price">{{ product.comparePrice | price }}</span>
+  </div>
+
+  <!-- Product Barcode -->
+  <p class="barcode">Barcode: {{ product.barcode }}</p>
+
+  <!-- Product Category -->
+  <p class="category">Category: {{ product.category }}</p>
+
+  <!-- Product Rating (PrimeNg rating component) -->
+  <p-rating
+    [(ngModel)]="product.rating"
+    [readonly]="true"
+    iconCancelClass="hidden"
+  ></p-rating>
+
+  <!-- Action buttons -->
+  <div class="row gap-05">
+    <button
+      type="button"
+      pButton
+      icon="pi pi-pencil"
+      (click)="editProduct()"
+      label="Edit"
+    ></button>
+    <button
+      type="button"
+      pButton
+      icon="pi pi-trash"
+      (click)="confirmDelete()"
+      label="Delete"
+      class="p-button-danger"
+      #deleteButton
+    ></button>
+  </div>
+</div>
+
+<p-confirmPopup></p-confirmPopup>
+
